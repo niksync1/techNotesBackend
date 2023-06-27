@@ -1,6 +1,15 @@
 npm init
 npm i cookie-parser
 npm i cors
+<<<<<<< Updated upstream
+=======
+npm i mongoose
+npm i dotenv
+npm i date-fns
+npm i mongoose-sequence
+npm i bcrypt
+npm i express-async-handler
+>>>>>>> Stashed changes
 
 mongodb+srv://niksync:<password>@cluster0.gykejoa.mongodb.net/
 
