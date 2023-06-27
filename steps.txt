@@ -1,6 +1,10 @@
 npm init
 npm i cookie-parser
 npm i cors
+npm i mongoose
+npm i dotenv
+npm i date-fns
+npm i mongoose-sequence
 
 mongodb+srv://niksync:<password>@cluster0.gykejoa.mongodb.net/
 
