@@ -1,0 +1,7 @@
+npm init
+npm i cookie-parser
+npm i cors
+
+mongodb+srv://niksync:<password>@cluster0.gykejoa.mongodb.net/
+
+https://github.com/gitdagray/mern_stack_course/blob/main/
