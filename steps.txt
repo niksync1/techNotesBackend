@@ -9,6 +9,9 @@ npm i date-fns
 npm i mongoose-sequence
 npm i bcrypt
 npm i express-async-handler
+
+
+to get the access token and refresh token for JWT : require ('crypto').randomBytes(64).toString('hex')
 >>>>>>> Stashed changes
 
 mongodb+srv://niksync:<password>@cluster0.gykejoa.mongodb.net/
