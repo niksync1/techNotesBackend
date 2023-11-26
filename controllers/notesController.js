@@ -14,8 +14,6 @@ const getAllNotes = async (req, res) => {
     }
 
     // Add username to each note before sending the response 
-    // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
-    // You could also do this with a for...of loop
     const notesWithUser = await Promise.all(notes.map(async (note) => {
         const user = await User.findById(note.user).lean().exec()
         return { ...note, username: user.username }
@@ -28,10 +26,10 @@ const getAllNotes = async (req, res) => {
 // @route POST /notes
 // @access Private
 const createNewNote = async (req, res) => {
-    const { user, title, text } = req.body
+    const { user, title, text, category } = req.body
 
     // Confirm data
-    if (!user || !title || !text) {
+    if (!user || !title || !text || !category) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -42,8 +40,8 @@ const createNewNote = async (req, res) => {
         return res.status(409).json({ message: 'Duplicate note title' })
     }
 
-    // Create and store the new user 
-    const note = await Note.create({ user, title, text })
+    // Create and store the new note 
+    const note = await Note.create({ user, title, text, category })
 
     if (note) { // Created 
         return res.status(201).json({ message: 'New note created' })
@@ -57,10 +55,10 @@ const createNewNote = async (req, res) => {
 // @route PATCH /notes
 // @access Private
 const updateNote = async (req, res) => {
-    const { id, user, title, text, completed } = req.body
+    const { id, user, title, text, category, completed } = req.body
 
     // Confirm data
-    if (!id || !user || !title || !text || typeof completed !== 'boolean') {
+    if (!id || !user || !title || !text || !category|| typeof completed !== 'boolean') {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
@@ -82,7 +80,9 @@ const updateNote = async (req, res) => {
     note.user = user
     note.title = title
     note.text = text
+    note.category = category
     note.completed = completed
+    
 
     const updatedNote = await note.save()
 
